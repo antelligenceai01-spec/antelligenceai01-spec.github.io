@@ -1,0 +1,1077 @@
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نملة الفلاحة الذكية | Antelligence Agriculture</title>
+<style>
+/* الخطوط */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+body { 
+  font-family: 'Cairo', sans-serif; 
+  margin:0; 
+  padding:0; 
+  transition: background 0.5s, color 0.5s; 
+  scroll-behavior: smooth; 
+  line-height: 1.6;
+}
+body.day { background:#f6f9f7; color:#1e1e1e; }
+body.night { background:#1e1e1e; color:#f0f0f0; }
+
+/* الرؤوس */
+header { 
+  text-align:center; 
+  padding:80px 20px; 
+  position:relative; 
+  overflow:hidden; 
+  transition: background 0.5s, color 0.5s; 
+}
+header.day { background: linear-gradient(to bottom, #00b67a,#007e56); color:white; }
+header.night { background: linear-gradient(to bottom,#004d35,#003327); color:#e0f0e8; }
+header h1 { 
+  font-size:2.6rem; 
+  margin-bottom:10px; 
+  transition: transform 0.5s; 
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+header p { 
+  font-size:1.2rem; 
+  max-width: 700px;
+  margin: 0 auto;
+  transition: transform 0.5s; 
+}
+
+/* صورة الهيدر */
+.header-image { 
+  width:120px; 
+  height:120px; 
+  border-radius:50%; 
+  object-fit:cover; 
+  margin:20px auto; 
+  border:4px solid rgba(255,255,255,0.3); 
+  box-shadow:0 8px 20px rgba(0,0,0,0.3);
+  transition: transform 0.3s;
+}
+.header-image:hover {
+  transform: scale(1.05);
+}
+
+/* أزرار */
+.cta-button { 
+  display:inline-block; 
+  background: linear-gradient(45deg,#00b67a,#007e56); 
+  color:#fff; 
+  text-decoration:none; 
+  padding:14px 28px; 
+  border-radius:30px; 
+  font-weight:bold; 
+  margin-top:20px; 
+  transition: all 0.3s; 
+  box-shadow:0 4px 12px rgba(0,0,0,0.3);
+  text-align: center;
+}
+.cta-button:hover { 
+  transform:scale(1.08) translateY(-3px); 
+  box-shadow:0 8px 18px rgba(0,0,0,0.4); 
+}
+.button-interactive { 
+  display:inline-block; 
+  padding:10px 22px; 
+  margin:5px; 
+  background: linear-gradient(45deg,#007e56,#00b67a); 
+  color:#fff; 
+  border-radius:25px; 
+  cursor:pointer; 
+  font-weight:bold; 
+  transition: all 0.3s;
+}
+.button-interactive:hover { 
+  transform:scale(1.08) translateY(-2px); 
+  box-shadow:0 8px 20px rgba(0,0,0,0.3); 
+}
+
+/* زر الوضع */
+.toggle-theme, .toggle-lang { 
+  position:absolute; 
+  top:15px; 
+  left:15px; 
+  background:rgba(255,255,255,0.9); 
+  border:none; 
+  padding:10px 18px; 
+  border-radius:25px; 
+  cursor:pointer; 
+  font-weight:bold; 
+  transition: all 0.3s; 
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.toggle-theme:hover, .toggle-lang:hover { 
+  background:#e0f0e8; 
+  transform:scale(1.05); 
+}
+
+/* الأقسام */
+section { 
+  max-width:950px; 
+  margin:50px auto; 
+  padding:30px; 
+  background:#fff; 
+  border-radius:15px; 
+  box-shadow:0 6px 18px rgba(0,0,0,0.05); 
+  transition: background 0.5s, color 0.5s, transform 0.5s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+section:hover { 
+  transform:translateY(-3px); 
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(to bottom, #00b67a, #007e56);
+}
+body.night section { 
+  background:#2b2b2b; 
+  color:#f0f0f0; 
+}
+
+/* العناوين */
+h2 { 
+  color:#009970; 
+  border-right:5px solid #00b67a; 
+  padding-right:10px; 
+  margin-bottom:20px; 
+  font-size:1.6rem; 
+  transition: transform 0.5s, color 0.5s; 
+  position: relative;
+  padding-left: 15px;
+}
+h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  background: #00b67a;
+  border-radius: 50%;
+}
+h2.animate { 
+  transform:translateX(-50px); 
+  opacity:0; 
+}
+h2.animate.visible { 
+  transform:translateX(0); 
+  opacity:1; 
+  transition: all 0.8s ease-out; 
+}
+
+/* المنتجات */
+.product { 
+  border:1px solid #e0e0e0; 
+  border-radius:12px; 
+  padding:20px; 
+  margin:20px 0; 
+  transition: transform 0.3s, box-shadow 0.3s, background 0.5s, color 0.5s; 
+  position:relative; 
+  overflow:hidden; 
+  border-left: 4px solid #00b67a;
+}
+.product:hover { 
+  transform:translateY(-5px) scale(1.02); 
+  box-shadow:0 12px 25px rgba(0,0,0,0.2); 
+  background: linear-gradient(135deg,#00b67a,#007e56,#00e085);
+}
+body.night .product { 
+  background:#3a3a3a; 
+  color:#f0f0f0; 
+}
+
+/* صور المنتجات */
+.product-image { 
+  width:80px; 
+  height:80px; 
+  border-radius:10px; 
+  object-fit:cover; 
+  float:left; 
+  margin-right:20px; 
+  margin-bottom:15px; 
+  border:2px solid #00b67a; 
+  transition: transform 0.3s;
+}
+.product-image:hover {
+  transform: scale(1.1);
+}
+.product-content { 
+  overflow:hidden; 
+}
+
+/* التذييل */
+footer { 
+  text-align:center; 
+  padding:25px; 
+  font-size:0.9rem; 
+  transition: background 0.5s, color 0.5s;
+}
+footer a { 
+  color:inherit; 
+  text-decoration:underline; 
+  transition: color 0.3s;
+}
+footer a:hover { 
+  color:#e0f0e8; 
+}
+
+/* إخفاء الإنجليزية افتراضيًا */
+#english { 
+  display:none; 
+  direction:ltr; 
+  text-align:left; 
+}
+
+/* القائمة */
+.nav-links { 
+  margin-top:20px; 
+}
+.nav-links a { 
+  color:white; 
+  text-decoration:none; 
+  margin:0 15px; 
+  font-weight:600; 
+  transition: all 0.3s; 
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.nav-links a:hover { 
+  text-decoration:underline; 
+  transform:scale(1.05); 
+  background: rgba(255,255,255,0.2);
+}
+
+/* رموز التواصل الاجتماعي */
+.social-icons { 
+  margin-top:20px; 
+}
+.social-icons a { 
+  display:inline-block; 
+  margin:0 10px; 
+  color:white; 
+  font-size:1.2rem; 
+  text-decoration:none; 
+  transition: transform 0.3s; 
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+}
+.social-icons a:hover { 
+  transform:scale(1.2) rotate(10deg); 
+  background: rgba(255,255,255,0.3);
+}
+
+/* صورة الفريق */
+.team-image { 
+  width:200px; 
+  height:200px; 
+  border-radius:15px; 
+  object-fit:cover; 
+  margin:20px auto; 
+  display:block; 
+  border:4px solid #00b67a; 
+  box-shadow:0 10px 25px rgba(0,0,0,0.2); 
+  transition: transform 0.3s;
+}
+.team-image:hover {
+  transform: scale(1.05);
+}
+
+/* قائمة الخدمات */
+.services-list { 
+  display:grid; 
+  grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); 
+  gap:20px; 
+  margin-top:20px; 
+}
+.service-card { 
+  background:rgba(255,255,255,0.1); 
+  padding:20px; 
+  border-radius:10px; 
+  text-align:center; 
+  transition: transform 0.3s; 
+  border: 1px solid rgba(255,255,255,0.15);
+  position: relative;
+  overflow: hidden;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to right, #00b67a, #007e56);
+}
+.service-card:hover { 
+  transform:translateY(-5px); 
+  background:rgba(255,255,255,0.15); 
+}
+.service-icon { 
+  font-size:2rem; 
+  margin-bottom:10px; 
+  color: #00b67a;
+}
+
+/* زر العودة للأعلى */
+.back-to-top { 
+  position:fixed; 
+  bottom:20px; 
+  left:20px; 
+  background:#00b67a; 
+  color:white; 
+  width:50px; 
+  height:50px; 
+  border-radius:50%; 
+  display:flex; 
+  align-items:center; 
+  justify-content:center; 
+  text-decoration:none; 
+  font-weight:bold; 
+  box-shadow:0 4px 12px rgba(0,0,0,0.3); 
+  opacity:0; 
+  transition: opacity 0.3s; 
+  z-index: 100;
+}
+.back-to-top.visible { 
+  opacity:1; 
+}
+.back-to-top:hover { 
+  transform:scale(1.1); 
+  background:#007e56; 
+}
+
+/* قسم الإحصائيات */
+.stats-section { 
+  background: linear-gradient(135deg, #00b67a, #007e56); 
+  color:white; 
+  text-align:center; 
+  padding:40px 20px; 
+  margin:40px auto; 
+  max-width:950px; 
+  border-radius:15px; 
+  position: relative;
+  overflow: hidden;
+}
+.stats-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1" d="M0,0 L100,100 M100,0 L0,100"/></svg>');
+  opacity: 0.2;
+}
+.stats-grid { 
+  display:grid; 
+  grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); 
+  gap:20px; 
+  margin-top:20px; 
+}
+.stat-item { 
+  padding:20px; 
+  transition: transform 0.3s;
+  border-radius: 10px;
+  position: relative;
+  z-index: 1;
+}
+.stat-item:hover {
+  transform: translateY(-5px);
+}
+.stat-number { 
+  font-size:2.5rem; 
+  font-weight:bold; 
+  margin-bottom:10px; 
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.stat-label { 
+  font-size:1rem; 
+  opacity:0.9; 
+}
+
+/* قسم المعرض */
+.gallery-section { 
+  text-align:center; 
+}
+.gallery-grid { 
+  display:grid; 
+  grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); 
+  gap:15px; 
+  margin-top:20px; 
+}
+.gallery-item { 
+  border-radius:10px; 
+  overflow:hidden; 
+  box-shadow:0 4px 12px rgba(0,0,0,0.1); 
+  transition: transform 0.3s; 
+  position: relative;
+}
+.gallery-item:hover { 
+  transform:scale(1.05); 
+}
+.gallery-item img { 
+  width:100%; 
+  height:150px; 
+  object-fit:cover; 
+  transition: transform 0.5s;
+}
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+.gallery-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+/* نموذج الاتصال */
+.contact-form { 
+  margin-top:20px; 
+}
+.contact-form input, .contact-form textarea { 
+  width:100%; 
+  padding:12px; 
+  margin:8px 0; 
+  border:1px solid #ddd; 
+  border-radius:8px; 
+  background:rgba(255,255,255,0.9); 
+  transition: all 0.3s;
+}
+.contact-form input:focus, .contact-form textarea:focus { 
+  outline: none;
+  border-color: #00b67a;
+  box-shadow: 0 0 0 3px rgba(0,182,122,0.2);
+}
+.contact-form button { 
+  background: linear-gradient(45deg,#00b67a,#007e56); 
+  color:white; 
+  padding:12px 24px; 
+  border:none; 
+  border-radius:8px; 
+  cursor:pointer; 
+  font-weight:bold; 
+  margin-top:10px; 
+  width: 100%;
+  max-width: 300px;
+  transition: all 0.3s;
+}
+.contact-form button:hover { 
+  transform:scale(1.05); 
+}
+
+/* قسم قناة الواتساب */
+.whatsapp-section {
+  background: #f0fff4;
+  border-left: 4px solid #25D366;
+  padding: 25px;
+  border-radius: 0 10px 10px 0;
+  margin: 25px 0;
+  transition: all 0.3s;
+}
+body.night .whatsapp-section {
+  background: #2b3a32;
+}
+.whatsapp-section:hover {
+  transform: translateX(5px);
+  box-shadow: -5px 0 15px rgba(37, 211, 102, 0.2);
+}
+.whatsapp-icon {
+  font-size: 2.5rem;
+  color: #25D366;
+  margin-bottom: 15px;
+}
+.whatsapp-title {
+  color: #128C7E;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+}
+body.night .whatsapp-title {
+  color: #4fc3a1;
+}
+
+/* تحسينات الجوال */
+@media (max-width: 768px) {
+  header { padding:60px 15px; }
+  header h1 { font-size:2rem; }
+  .nav-links a { 
+    display:block; 
+    margin:8px 0; 
+    width: 100%;
+    padding: 10px;
+  }
+  .product-image { width:60px; height:60px; }
+  .stats-grid { grid-template-columns:1fr; }
+  .toggle-theme, .toggle-lang {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+  .toggle-theme span, .toggle-lang span {
+    display: none;
+  }
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .product-content h3 {
+    font-size: 1.2rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<header id="main-header" class="day">
+  <button class="toggle-theme" onclick="toggleTheme()">
+    <span>تبديل الوضع</span> 🌗
+  </button>
+  <button class="toggle-lang" onclick="toggleLang()">
+    <span>اللغة</span> 🌐
+  </button>
+  
+  <img src="https://placehold.co/120x120/00b67a/ffffff?text=نملة" alt="نملة الفلاحة الذكية" class="header-image">
+  
+  <h1>نملة الفلاحة الذكية 🌿</h1>
+  <p>من أرض الواقع إلى العلم — بحوث، تحليل، حلول ميدانية موثوقة.</p>
+  
+  <div class="nav-links">
+    <a href="#about">من نحن</a>
+    <a href="#services">خدماتنا</a>
+    <a href="#products">منتجاتنا</a>
+    <a href="#whatsapp">قناة الواتساب</a>
+    <a href="#gallery">معرض الصور</a>
+    <a href="#contact">تواصل معنا</a>
+  </div>
+  
+  <a href="https://payhip.com/b/s5tw0" class="cta-button">📘 تحميل أول كتاب الآن</a>
+  
+  <div class="social-icons">
+    <a href="https://www.facebook.com/profile.php?id=61581887402349" target="_blank" aria-label="فيسبوك">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.593 1.323-1.325V1.325C24 .593 23.407 0 22.675 0z"/>
+      </svg>
+    </a>
+    <a href="https://whatsapp.com/channel/0029Vb6j0VdBqbrFUtmUBM0F" target="_blank" aria-label="واتساب">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.031-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.076-.15-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.477 0 1.46.988 2.889 1.113 3.062.126.172 1.76 2.66 4.253 3.727 2.493 1.066 2.667 1.066 3.262.99 0.594-.075 1.897-.77 2.17-1.538.272-.769.272-1.413.197-1.561z"/>
+        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0z" fill-rule="evenodd" clip-rule="evenodd"/>
+      </svg>
+    </a>
+    <a href="mailto:antelligenceai0.1@gmail.com" aria-label="بريد إلكتروني">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+      </svg>
+    </a>
+  </div>
+</header>
+
+<!-- القسم العربي -->
+<div id="arabic">
+<section id="about">
+  <h2 class="animate">من نحن</h2>
+  <img src="https://placehold.co/200x200/00b67a/ffffff?text=فريق+البحث" alt="فريق نملة الفلاحة" class="team-image">
+  <p>نحن باحثون مغاربة بدأنا من الميدان، من بين النباتات والتربة والمصائد.  
+  من هناك وُلدت فكرة <strong>نملة الفلاحة</strong> — مبادرة تجمع بين العلم والتجربة الميدانية والذكاء التحليلي.  
+  اليوم، نقدم تقارير واقعية وملفات علمية تساعد الفلاحين والباحثين في مواجهة الآفات والأمراض الزراعية.</p>
+  <p>نعمل على تحويل المعرفة الزراعية إلى حلول عملية وقابلة للتطبيق، مع التركيز على البيئة المحلية المغربية واحتياجات المزارعين.</p>
+</section>
+
+<section class="stats-section">
+  <h2>إحصائياتنا</h2>
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-number">50+</div>
+      <div class="stat-label">دراسة علمية</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">1000+</div>
+      <div class="stat-label">تحليل صور</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">500+</div>
+      <div class="stat-label">فلاح مستفيد</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">24h</div>
+      <div class="stat-label">وقت الرد</div>
+    </div>
+  </div>
+</section>
+
+<section id="whatsapp" class="whatsapp-section">
+  <div class="whatsapp-icon">💬</div>
+  <h2 class="whatsapp-title">45 Bloc Å 8007 – نملة الفلاحة</h2>
+  <p>قناة واتساب رسمية للتواصل بين عمال الفلاحة، مخصصة لتبادل الملاحظات حول الحقول، متابعة الآفات والحشرات، ومشاركة التعليمات اليومية.</p>
+  <p>هدفنا التعاون والانضباط لتحقيق أفضل إنتاجية بجودة عالية. انضم إلينا للحصول على معلومات حصرية ونصائح يومية من الخبراء.</p>
+  <a href="https://whatsapp.com/channel/0029Vb6j0VdBqbrFUtmUBM0F" class="cta-button" style="background: #25D366; margin-top: 15px;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white" style="margin-left: 5px; vertical-align: middle;">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.031-.967-.273-.099-.471-.148-1.76.867-2.031-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.076-.15-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.477 0 1.46.988 2.889 1.113 3.062.126.172 1.76 2.66 4.253 3.727 2.493 1.066 2.667 1.066 3.262.99 0.594-.075 1.897-.77 2.17-1.538.272-.769.272-1.413.197-1.561z"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12C24 5.373 18.627 0 12 0z" fill-rule="evenodd" clip-rule="evenodd"/>
+    </svg>
+    انضم إلى قناة الواتساب
+  </a>
+</section>
+
+<section id="services">
+  <h2 class="animate">ماذا نقدم؟</h2>
+  <div class="services-list">
+    <div class="service-card">
+      <div class="service-icon">📗</div>
+      <h3>دراسات علمية</h3>
+      <p>في علم الحشرات والأمراض النباتية</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🧠</div>
+      <h3>تحليل صور</h3>
+      <p>تشخيص المشاكل الزراعية بدقة</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🌍</div>
+      <h3>تقارير جاهزة</h3>
+      <p>للفلاحين والطلاب والباحثين</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💡</div>
+      <h3>حلول عملية</h3>
+      <p>من تجارب ميدانية حقيقية</p>
+    </div>
+  </div>
+</section>
+
+<section id="products">
+  <h2 class="animate">منتجاتنا</h2>
+  <div class="product">
+    <img src="https://placehold.co/80x80/e63946/ffffff?text=كتاب" alt="كتاب توتا أبسولوتا" class="product-image">
+    <div class="product-content">
+      <h3>📕 دليل مكافحة توتا أبسولوتا (Tuta absoluta)</h3>
+      <p>كتاب علمي شامل من إعداد هشام الكواش، يشرح دورة حياة الآفة، وأساليب المكافحة الحديثة المدعومة بالتجارب الميدانية والصور الدقيقة.</p>
+      <a href="https://payhip.com/b/s5tw0" class="cta-button">📥 تحميل الآن</a>
+    </div>
+  </div>
+  <div class="product">
+    <img src="https://placehold.co/80x80/2a9d8f/ffffff?text=تحليل" alt="تحليل الحشرات" class="product-image">
+    <div class="product-content">
+      <h3>🔍 خدمة تحليل الحشرات بالصور</h3>
+      <p>ارسل صورة لحشرة أو نبات مصاب واحصل على تحليل علمي دقيق وتوصيات عملية خلال 24 ساعة.</p>
+      <a href="mailto:antelligenceai0.1@gmail.com" class="cta-button">📧 أرسل الآن</a>
+    </div>
+  </div>
+  <div class="product">
+    <img src="https://placehold.co/80x80/1d3557/ffffff?text=استشارات" alt="استشارات ميدانية" class="product-image">
+    <div class="product-content">
+      <h3>🌾 استشارات ميدانية مجانية</h3>
+      <p>نقدم استشارات مباشرة للفلاحين في المناطق المغربية عبر قناة الواتساب الخاصة بنا.</p>
+      <a href="https://whatsapp.com/channel/0029Vb6j0VdBqbrFUtmUBM0F" class="cta-button">💬 انضم إلى القناة</a>
+    </div>
+  </div>
+</section>
+
+<section id="gallery" class="gallery-section">
+  <h2 class="animate">معرض الصور</h2>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="https://placehold.co/200x150/457b9d/ffffff?text=حقل+طماطم" alt="حقل طماطم">
+      <div class="gallery-overlay">
+        <span>تحليل حقل طماطم</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://placehold.co/200x150/2a9d8f/ffffff?text=تحليل+حشرات" alt="تحليل حشرات">
+      <div class="gallery-overlay">
+        <span>تحليل حشرات ميداني</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://placehold.co/200x150/e76f51/ffffff?text=ورشة+عمل" alt="ورشة عمل">
+      <div class="gallery-overlay">
+        <span>ورشة عمل مع المزارعين</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://placehold.co/200x150/f4a261/ffffff?text=معدات+زراعية" alt="معدات زراعية">
+      <div class="gallery-overlay">
+        <span>استخدام المعدات الزراعية</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <h2 class="animate">آراء العملاء</h2>
+  <div class="services-list">
+    <div class="service-card" style="background: rgba(255,255,255,0.9); color: #1e1e1e; text-align: right;">
+      <p style="font-style: italic; margin-bottom: 15px;">"الكتاب الذي قدمته نملة الفلاحة ساعدني في التعرف على آفة توتا أبسولوتا وطرق مكافحتها بشكل فعال. أصبحت محصولي أكثر صحة وجودة."</p>
+      <strong>— محمد، مزارع طماطم من مكناس</strong>
+    </div>
+    <div class="service-card" style="background: rgba(255,255,255,0.9); color: #1e1e1e; text-align: right;">
+      <p style="font-style: italic; margin-bottom: 15px;">"الاستشارات اليومية عبر قناة الواتساب غيرت طريقة عملي. الآن أعرف متى أستخدم المبيدات وأي نوع يناسب محصولي."</p>
+      <strong>— فاطمة، مزارعة خضر من الفقيه بن صالح</strong>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2 class="animate">تواصل معنا</h2>
+  <div class="contact-form">
+    <form id="contactForm">
+      <input type="text" placeholder="اسمك" required>
+      <input type="email" placeholder="بريدك الإلكتروني" required>
+      <textarea placeholder="رسالتك" rows="4" required></textarea>
+      <button type="submit">إرسال الرسالة</button>
+    </form>
+  </div>
+  <p style="margin-top:20px;">
+    📩 <strong>البريد الإلكتروني:</strong> <a href="mailto:antelligenceai0.1@gmail.com">antelligenceai0.1@gmail.com</a><br>
+    💬 <strong>قناة واتساب:</strong> <a href="https://whatsapp.com/channel/0029Vb6j0VdBqbrFUtmUBM0F">45 Bloc Å 8007 – نملة الفلاحة</a><br>
+    🌐 <strong>فيسبوك:</strong> <a href="https://www.facebook.com/profile.php?id=61581887402349">صفحة نملة الفلاحة</a><br>
+    🌾 من المغرب إلى العالم — نزرع المعرفة لنحصد الذكاء.
+  </p>
+</section>
+</div>
+
+<!-- القسم الإنجليزي -->
+<div id="english">
+<section id="about-en">
+  <h2 class="animate">About Us</h2>
+  <img src="https://placehold.co/200x200/00b67a/ffffff?text=Research+Team" alt="Antelligence Agriculture Team" class="team-image">
+  <p>We are Moroccan agricultural researchers combining field experience with scientific insight.  
+  "Antelligence Agriculture" was born from real farms, real challenges, and the dream of turning data into wisdom.  
+  We provide professional agricultural reports, pest diagnosis, and smart farming solutions for everyone.</p>
+  <p>We focus on transforming agricultural knowledge into practical, applicable solutions with emphasis on the local Moroccan environment and farmers' needs.</p>
+</section>
+
+<section class="stats-section">
+  <h2>Our Statistics</h2>
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-number">50+</div>
+      <div class="stat-label">Scientific Studies</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">1000+</div>
+      <div class="stat-label">Photo Analysis</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">500+</div>
+      <div class="stat-label">Farmers Served</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">24h</div>
+      <div class="stat-label">Response Time</div>
+    </div>
+  </div>
+</section>
+
+<section id="whatsapp-en" class="whatsapp-section">
+  <div class="whatsapp-icon">💬</div>
+  <h2 class="whatsapp-title">45 Bloc Å 8007 – Namlat Al-Fellaha</h2>
+  <p>Official WhatsApp channel for communication between farm workers, dedicated to exchanging field notes, monitoring pests and insects, and sharing daily instructions.</p>
+  <p>Our goal is collaboration and discipline to achieve the best productivity with high quality. Join us to get exclusive information and daily tips from experts.</p>
+  <a href="https://whatsapp.com/channel/0029Vb6j0VdBqbrFUtmUBM0F" class="cta-button" style="background: #25D366; margin-top: 15px;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white" style="margin-left: 5px; vertical-align: middle;">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.031-.967-.273-.099-.471-.148-1.76.867-2.031-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.076-.15-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.477 0 1.46.988 2.889 1.113 3.062.126.172 1.76 2.66 4.253 3.727 2.493 1.066 2.667 1.066 3.262.99 0.594-.075 1.897-.77 2.17-1.538.272-.769.272-1.413.197-1.561z"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12C24 5.373 18.627 0 12 0z" fill-rule="evenodd" clip-rule="evenodd"/>
+    </svg>
+    Join WhatsApp Channel
+  </a>
+</section>
+
+<section id="services-en">
+  <h2 class="animate">Our Services</h2>
+  <div class="services-list">
+    <div class="service-card">
+      <div class="service-icon">📗</div>
+      <h3>Scientific Reports</h3>
+      <p>On pests and plant diseases</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🧠</div>
+      <h3>Photo Analysis</h3>
+      <p>Precise agricultural problem diagnosis</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🌍</div>
+      <h3>Ready Reports</h3>
+      <p>For farmers, students and researchers</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💡</div>
+      <h3>Practical Solutions</h3>
+      <p>Tested in real field environments</p>
+    </div>
+  </div>
+</section>
+
+<section id="products-en">
+  <h2 class="animate">Featured Products</h2>
+  <div class="product">
+    <img src="https://placehold.co/80x80/e63946/ffffff?text=Book" alt="Tuta absoluta Guide" class="product-image">
+    <div class="product-content">
+      <h3>📕 The Complete Guide to Tuta absoluta</h3>
+      <p>Written by Hicham El Kouache — a complete manual on tomato leafminer biology, control, and field management.</p>
+      <a href="https://payhip.com/b/s5tw0" class="cta-button">📥 Download Now</a>
+    </div>
+  </div>
+  <div class="product">
+    <img src="https://placehold.co/80x80/2a9d8f/ffffff?text=Analysis" alt="Insect Analysis" class="product-image">
+    <div class="product-content">
+      <h3>🔍 Insect Analysis Service</h3>
+      <p>Send a photo of a pest or diseased plant and get a detailed analysis and practical recommendations within 24 hours.</p>
+      <a href="mailto:antelligenceai0.1@gmail.com" class="cta-button">📧 Send Now</a>
+    </div>
+  </div>
+  <div class="product">
+    <img src="https://placehold.co/80x80/1d3557/ffffff?text=Consulting" alt="Field Consulting" class="product-image">
+    <div class="product-content">
+      <h3>🌾 Free Field Consulting</h3>
+      <p>We provide direct consulting for farmers in Moroccan regions through our WhatsApp channel.</p>
+      <a href="https://whatsapp.com/channel/0029Vb6j0VdBqbrFUtmUBM0F" class="cta-button">💬 Join Channel</a>
+    </div>
+  </div>
+</section>
+
+<section id="gallery-en" class="gallery-section">
+  <h2 class="animate">Photo Gallery</h2>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="https://placehold.co/200x150/457b9d/ffffff?text=Tomato+Field" alt="Tomato Field">
+      <div class="gallery-overlay">
+        <span>Tomato Field Analysis</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://placehold.co/200x150/2a9d8f/ffffff?text=Pest+Analysis" alt="Pest Analysis">
+      <div class="gallery-overlay">
+        <span>Field Pest Analysis</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://placehold.co/200x150/e76f51/ffffff?text=Workshop" alt="Workshop">
+      <div class="gallery-overlay">
+        <span>Farmer Workshop</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://placehold.co/200x150/f4a261/ffffff?text=Farming+Tools" alt="Farming Tools">
+      <div class="gallery-overlay">
+        <span>Agricultural Equipment</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials-en">
+  <h2 class="animate">Customer Testimonials</h2>
+  <div class="services-list">
+    <div class="service-card" style="background: rgba(255,255,255,0.9); color: #1e1e1e;">
+      <p style="font-style: italic; margin-bottom: 15px;">"The book provided by Antelligence Agriculture helped me identify the Tuta absoluta pest and control it effectively. My crop is now healthier and of better quality."</p>
+      <strong>— Mohammed, Tomato Farmer from Meknes</strong>
+    </div>
+    <div class="service-card" style="background: rgba(255,255,255,0.9); color: #1e1e1e;">
+      <p style="font-style: italic; margin-bottom: 15px;">"The daily consultations through the WhatsApp channel changed my farming methods. Now I know when to use pesticides and which type is suitable for my crop."</p>
+      <strong>— Fatima, Vegetable Farmer from Beni Mellal</strong>
+    </div>
+  </div>
+</section>
+
+<section id="contact-en">
+  <h2 class="animate">Contact Us</h2>
+  <div class="contact-form">
+    <form id="contactFormEn">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" rows="4" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+  <p style="margin-top:20px;">
+    📩 <strong>Email:</strong> <a href="mailto:antelligenceai0.1@gmail.com">antelligenceai0.1@gmail.com</a><br>
+    💬 <strong>WhatsApp Channel:</strong> <a href="https://whatsapp.com/channel/0029Vb6j0VdBqbrFUtmUBM0F">45 Bloc Å 8007 – Namlat Al-Fellaha</a><br>
+    🌐 <strong>Facebook:</strong> <a href="https://www.facebook.com/profile.php?id=61581887402349">Official Page</a><br>
+    🌾 From Morocco to the world — growing knowledge, harvesting intelligence.
+  </p>
+</section>
+</div>
+
+<footer>
+  <p>© 2025 نملة الفلاحة الذكية | إعداد هشام الكواش</p>
+  <p style="margin-top: 10px; font-size: 0.85rem;">تم تصميم هذا الموقع لتحسين تجربة المستخدم وتسهيل الوصول إلى المعلومات الزراعية الهامة</p>
+</footer>
+
+<a href="#" class="back-to-top" id="backToTop">↑</a>
+
+<script>
+// الوضع الليلي/النهاري تلقائي
+function applyTheme(hour){
+  const body=document.body, header=document.getElementById('main-header');
+  if(hour>=18||hour<6){ body.classList.add('night'); body.classList.remove('day'); header.classList.add('night'); header.classList.remove('day');}
+  else{ body.classList.add('day'); body.classList.remove('night'); header.classList.add('day'); header.classList.remove('night');}
+}
+applyTheme(new Date().getHours());
+
+// تبديل الوضع يدوي
+function toggleTheme(){
+  const body=document.body, header=document.getElementById('main-header');
+  body.classList.toggle('night'); body.classList.toggle('day');
+  header.classList.toggle('night'); header.classList.toggle('day');
+}
+
+// تبديل اللغة
+function toggleLang(){
+  const ar=document.getElementById('arabic'), en=document.getElementById('english'), btn=document.querySelector('.toggle-lang');
+  if(ar.style.display==='none'){ 
+    ar.style.display='block'; 
+    en.style.display='none'; 
+    btn.innerHTML = '<span>اللغة</span> 🌐 English';
+  }
+  else{ 
+    ar.style.display='none'; 
+    en.style.display='block'; 
+    btn.innerHTML = '<span>Language</span> 🌐 العربية';
+  }
+}
+
+// حركة العناوين عند التمرير
+function animateTitles(){
+  const titles=document.querySelectorAll('h2.animate');
+  const windowBottom=window.innerHeight/1.2;
+  titles.forEach(t=>{ 
+    const top=t.getBoundingClientRect().top; 
+    if(top<windowBottom) t.classList.add('visible');
+  });
+}
+window.addEventListener('scroll',animateTitles);
+animateTitles();
+
+// زر العودة للأعلى
+const backToTopButton = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  if (window.pageYOffset > 300) {
+    backToTopButton.classList.add('visible');
+  } else {
+    backToTopButton.classList.remove('visible');
+  }
+});
+
+// إصلاح روابط التنقل
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    if(targetId === '#') return;
+    
+    const target = document.querySelector(targetId);
+    if (target) {
+      const headerOffset = 100;
+      const elementPosition = target.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+// معالجة نموذج الاتصال
+document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  // إضافة تأثير التحميل
+  const button = this.querySelector('button');
+  const originalText = button.innerHTML;
+  button.innerHTML = 'جاري الإرسال...';
+  button.disabled = true;
+  
+  // محاكاة عملية الإرسال
+  setTimeout(() => {
+    alert('تم إرسال رسالتك بنجاح! سنرد عليك خلال 24 ساعة.');
+    this.reset();
+    button.innerHTML = originalText;
+    button.disabled = false;
+  }, 1000);
+});
+
+document.getElementById('contactFormEn')?.addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  // إضافة تأثير التحميل
+  const button = this.querySelector('button');
+  const originalText = button.innerHTML;
+  button.innerHTML = 'Sending...';
+  button.disabled = true;
+  
+  // محاكاة عملية الإرسال
+  setTimeout(() => {
+    alert('Your message has been sent successfully! We will reply within 24 hours.');
+    this.reset();
+    button.innerHTML = originalText;
+    button.disabled = false;
+  }, 1000);
+});
+
+// تأثيرات إضافية للعناصر عند التمرير
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      if (entry.target.classList.contains('product')) {
+        entry.target.style.animation = 'fadeInUp 0.5s ease-out forwards';
+      } else if (entry.target.classList.contains('service-card')) {
+        entry.target.style.animation = 'fadeIn 0.5s ease-out forwards';
+      }
+    }
+  });
+}, { threshold: 0.1 });
+
+// إضافة تأثيرات للعناصر
+document.querySelectorAll('.product, .service-card').forEach(el => {
+  el.style.opacity = '0';
+  observer.observe(el);
+});
+
+// تعريف التحريك
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+`;
+document.head.appendChild(style);
+</script>
+
+</body>
+</html>
+```
